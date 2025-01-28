@@ -32,7 +32,9 @@ const bricks = [];
 for (let c = 0; c < brickColumnCount; c += 1) {
   bricks[c] = [];
   for (let r = 0; r < brickRowCount; r += 1) {
-    bricks[c][r] = { x: 0, y: 0, status: 1 };
+    const brickX = (r * (brickWidth + brickPadding)) + brickOffsetLeft;
+    const brickY = (c * (brickHeight + brickPadding)) + brickOffsetTop;
+    bricks[c][r] = { x: brickX, y: brickY, status: 1 }; // Set initial x and y
   }
 }
 
