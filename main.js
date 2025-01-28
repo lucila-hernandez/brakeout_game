@@ -34,7 +34,7 @@ for (let c = 0; c < brickColumnCount; c += 1) {
   for (let r = 0; r < brickRowCount; r += 1) {
     const brickX = (r * (brickWidth + brickPadding)) + brickOffsetLeft;
     const brickY = (c * (brickHeight + brickPadding)) + brickOffsetTop;
-    bricks[c][r] = { x: brickX, y: brickY, status: 1 }; // Set initial x and y
+    bricks[c][r] = { x: brickX, y: brickY, status: 1 };
   }
 }
 
@@ -101,10 +101,8 @@ function drawBricks() {
   for (let c = 0; c < brickColumnCount; c += 1) {
     for (let r = 0; r < brickRowCount; r += 1) {
       if (bricks[c][r].status === 1) {
-        const brickX = (r * (brickWidth + brickPadding)) + brickOffsetLeft;
-        const brickY = (c * (brickHeight + brickPadding)) + brickOffsetTop;
-        bricks[c][r].x = brickX;
-        bricks[c][r].y = brickY;
+        const brickX = bricks[c][r].x;
+        const brickY = bricks[c][r].y;
         ctx.beginPath();
         ctx.rect(brickX, brickY, brickWidth, brickHeight);
         ctx.fillStyle = '#0095DD';
