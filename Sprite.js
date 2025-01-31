@@ -1,3 +1,4 @@
+// Sprite draws a rectangle of color at x, y with and width and height
 class Sprite {
   constructor(x, y, width, height, color = '#f00') {
     this.x = x;
@@ -7,7 +8,7 @@ class Sprite {
     this.color = color;
   }
 
-  // render the sprite (ex. draw the rectangle)
+  // render the sprite (like drawing the rectangle)
   render(ctx) {
     ctx.beginPath();
     ctx.rect(this.x, this.y, this.width, this.height);
