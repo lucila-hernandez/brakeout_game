@@ -126,6 +126,7 @@ function draw() {
         alert('GAME OVER');
         document.location.reload();
       } else {
+        ball.reset();
         paddleX = (canvas.width - paddleWidth) / 2;
       }
     }
