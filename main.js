@@ -6,6 +6,8 @@ import Sprite from './Sprite.js';
 import Brick from './Brick.js';
 import Ball from './Ball.js';
 import Paddle from './Paddle.js';
+import Score from './Score.js';
+import Lives from './Lives.js';
 import {
   canvas, ctx, brickHeight, brickWidth, brickRowCount, brickColumnCount,
   brickPadding, brickOffsetTop, brickOffsetLeft, bricks, paddleWidth,
@@ -14,9 +16,8 @@ import {
 
 const ball = new Ball(canvas.width / 2, canvas.height - 30, ballRadius);
 const paddle = new Paddle((canvas.width - paddleWidth) / 2, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-
-let score = 0;
-let lives = 3;
+const score = new Score(8, 20);
+const lives = new Lives(canvas.width - 65, 20);
 
 for (let c = 0; c < brickColumnCount; c += 1) {
   bricks[c] = [];
@@ -35,8 +36,8 @@ function collisionDetection() {
         if (ball.x > b.x && ball.x < b.x + brickWidth && ball.y > b.y && ball.y < b.y + brickHeight) {
           ball.dy = -ball.dy;
           b.status = 0;
-          score += 1;
-          if (score === brickRowCount * brickColumnCount) {
+          score.increment();
+          if (score.score === brickRowCount * brickColumnCount) {
             alert('YOU WIN, CONGRATS!');
             document.location.reload();
           }
@@ -57,18 +58,6 @@ function drawBricks() {
   }
 }
 
-function drawScore() {
-  ctx.font = '16px Arial';
-  ctx.fillStyle = '#0095DD';
-  ctx.fillText(`Score: ${score}`, 8, 20);
-}
-
-function drawLives() {
-  ctx.font = '16px Arial';
-  ctx.fillStyle = '#0095DD';
-  ctx.fillText(`Lives: ${lives}`, canvas.width - 65, 20);
-}
-
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ball.move();
@@ -76,8 +65,8 @@ function draw() {
   drawBricks();
   ball.render(ctx);
   paddle.render(ctx);
-  drawScore();
-  drawLives();
+  score.draw(ctx);
+  lives.draw(ctx);
   collisionDetection();
 
   if (ball.x + ball.dx > canvas.width - ballRadius || ball.x + ball.dx < ballRadius) {
@@ -89,8 +78,8 @@ function draw() {
     if (ball.x > paddle.x && ball.x < paddle.x + paddleWidth) {
       ball.dy = -ball.dy;
     } else {
-      lives -= 1;
-      if (!lives) {
+      lives.decrement();
+      if (lives.lives === 0) {
         alert('GAME OVER');
         document.location.reload();
       } else {
