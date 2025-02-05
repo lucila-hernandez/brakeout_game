@@ -4,7 +4,7 @@ import Sprite from './Sprite.js';
 import { canvas, paddleHeight, paddleWidth } from './Constants.js';
 
 class Paddle extends Sprite {
-  constructor(x, y, width, height, color = '#0095DD') {
+  constructor(x, y, width, height, color = '#C59FC9') {
     super(x, y, width, height, color);
     this.dx = 7;
     this.rightPressed = false;
