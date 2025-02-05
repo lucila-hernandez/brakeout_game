@@ -5,7 +5,7 @@ import Sprite from './Sprite.js';
 import { canvas } from './Constants.js';
 
 class Ball extends Sprite {
-  constructor(x, y, radius = 10, color = '#0095DD') {
+  constructor(x, y, radius = 10, color = '#CFBAE1') {
     super(x, y, 0, 0, color); // Ball doesn't need width & height
     this.radius = radius;
     this.dx = 2; // Horizontal speed
