@@ -8,6 +8,7 @@ import Ball from './Ball.js';
 import Paddle from './Paddle.js';
 import Score from './Score.js';
 import Lives from './Lives.js';
+import Label from './Label.js';
 import {
   canvas, ctx, brickHeight, brickWidth, brickRowCount, brickColumnCount,
   brickPadding, brickOffsetTop, brickOffsetLeft, bricks, paddleWidth,
@@ -18,6 +19,8 @@ const ball = new Ball(canvas.width / 2, canvas.height - 30, ballRadius);
 const paddle = new Paddle((canvas.width - paddleWidth) / 2, canvas.height - paddleHeight, paddleWidth, paddleHeight);
 const score = new Score(8, 20);
 const lives = new Lives(canvas.width - 65, 20);
+const scoreLabel = new Label(8, 20, 'Score:0');
+const livesLabel = new Label(canvas.width - 65, 20, 'Lives:3');
 
 for (let c = 0; c < brickColumnCount; c += 1) {
   bricks[c] = [];
@@ -37,6 +40,7 @@ function collisionDetection() {
           ball.dy = -ball.dy;
           b.status = 0;
           score.increment();
+          scoreLabel.text = `Score: ${score.score}`;
           if (score.score === brickRowCount * brickColumnCount) {
             alert('YOU WIN, CONGRATS!');
             document.location.reload();
@@ -65,6 +69,8 @@ function draw() {
   drawBricks();
   ball.render(ctx);
   paddle.render(ctx);
+  scoreLabel.text = `Score: ${score.score}`;
+  livesLabel.text = `Lives: ${lives.lives}`;
   score.draw(ctx);
   lives.draw(ctx);
   collisionDetection();
@@ -79,6 +85,7 @@ function draw() {
       ball.dy = -ball.dy;
     } else {
       lives.decrement();
+      livesLabel.text = `Lives: ${lives.lives}`;
       if (lives.lives === 0) {
         alert('GAME OVER');
         document.location.reload();
@@ -88,7 +95,6 @@ function draw() {
       }
     }
   }
-
   requestAnimationFrame(draw);
 }
 
