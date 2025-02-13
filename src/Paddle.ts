@@ -4,7 +4,10 @@ import Sprite from './Sprite.js';
 import { canvas, paddleHeight, paddleWidth } from './Constants.js';
 
 class Paddle extends Sprite {
-  constructor(x, y, width, height, color = '#C59FC9') {
+  dx:number
+  rightPressed: boolean
+  leftPressed: boolean
+  constructor(x:number, y:number, width:number, height:number, color:string = '#C59FC9') {
     super(x, y, width, height, color);
     this.dx = 7;
     this.rightPressed = false;
@@ -15,7 +18,7 @@ class Paddle extends Sprite {
     document.addEventListener('mousemove', this.mouseMoveHandler.bind(this), false);
   }
 
-  keyDownHandler(e) {
+  keyDownHandler(e:any) {
     if (e.code === 'ArrowRight') {
       this.rightPressed = true;
     } else if (e.code === 'ArrowLeft') {
@@ -23,7 +26,7 @@ class Paddle extends Sprite {
     }
   }
 
-  keyUpHandler(e) {
+  keyUpHandler(e:any) {
     if (e.code === 'ArrowRight') {
       this.rightPressed = false;
     } else if (e.code === 'ArrowLeft') {
@@ -31,7 +34,7 @@ class Paddle extends Sprite {
     }
   }
 
-  mouseMoveHandler(e) {
+  mouseMoveHandler(e:any) {
     const relativeX = e.clientX - canvas.offsetLeft;
     if (relativeX > 0 && relativeX < canvas.width) {
       this.x = relativeX - this.width / 2;
@@ -46,7 +49,7 @@ class Paddle extends Sprite {
     }
   }
 
-  render(ctx) {
+  render(ctx:CanvasRenderingContext2D) {
     ctx.beginPath();
     ctx.rect(this.x, canvas.height - paddleHeight, paddleWidth, paddleHeight);
     ctx.fillStyle = this.color;

@@ -1,11 +1,14 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-undef */
 // eslint-disable-next-line import/extensions
-import Sprite from './Sprite.js';
-import { canvas } from './Constants.js';
+import Sprite from './Sprite';
+import { canvas } from './Constants';
 
 class Ball extends Sprite {
-  constructor(x, y, radius = 10, color = '#CFBAE1') {
+  radius:number
+  dx:number
+  dy:number
+  constructor(x:number, y:number, radius:number = 10, color:string = '#CFBAE1') {
     super(x, y, 0, 0, color); // Ball doesn't need width & height
     this.radius = radius;
     this.dx = 2; // Horizontal speed
@@ -24,7 +27,7 @@ class Ball extends Sprite {
     this.y += this.dy;
   }
 
-  render(ctx) { // Overrides Sprite's render method
+  render(ctx:CanvasRenderingContext2D) { 
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     ctx.fillStyle = this.color;

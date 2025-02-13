@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-undef
-export const canvas = document.getElementById('myCanvas');
+export const canvas = document.getElementById('myCanvas') as HTMLCanvasElement;
 export const ctx = canvas.getContext('2d');
 export const ballRadius = 10;
 export const paddleHeight = 10;
@@ -11,4 +11,4 @@ export const brickHeight = 20;
 export const brickPadding = 10;
 export const brickOffsetTop = 30;
 export const brickOffsetLeft = 30;
-export const bricks = [];
+export const bricks: any[] = [];

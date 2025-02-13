@@ -1,6 +1,11 @@
 // Sprite draws a rectangle of color at x, y with and width and height
 class Sprite {
-  constructor(x, y, width, height, color = '#f00') {
+  x:number
+  y:number
+  width:number
+  height:number
+  color:string
+  constructor(x:number, y:number, width:number, height:number, color:string = '#f00') {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -9,7 +14,7 @@ class Sprite {
   }
 
   // render the sprite (like drawing the rectangle)
-  render(ctx) {
+  render(ctx:CanvasRenderingContext2D) {
     ctx.beginPath();
     ctx.rect(this.x, this.y, this.width, this.height);
     ctx.fillStyle = this.color;

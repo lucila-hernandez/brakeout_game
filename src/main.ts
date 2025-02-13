@@ -2,18 +2,18 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable max-len */
 /* eslint-disable import/extensions, no-undef, no-unused-vars */
-import Sprite from './Sprite.js';
-import Brick from './Brick.js';
-import Ball from './Ball.js';
-import Paddle from './Paddle.js';
-import Score from './Score.js';
-import Lives from './Lives.js';
-import Label from './Label.js';
+import Sprite from './Sprite';
+import Brick from './Brick';
+import Ball from './Ball';
+import Paddle from './Paddle';
+import Score from './Score';
+import Lives from './Lives';
+import Label from './Label';
 import {
   canvas, ctx, brickHeight, brickWidth, brickRowCount, brickColumnCount,
   brickPadding, brickOffsetTop, brickOffsetLeft, bricks, paddleWidth,
   paddleHeight, ballRadius,
-} from './Constants.js';
+} from './Constants';
 
 const ball = new Ball(canvas.width / 2, canvas.height - 30, ballRadius);
 const paddle = new Paddle((canvas.width - paddleWidth) / 2, canvas.height - paddleHeight, paddleWidth, paddleHeight);
